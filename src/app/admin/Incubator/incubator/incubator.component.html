@@ -1,0 +1,104 @@
+<div class="card" style="border: 1px solid #818181!important;">
+       
+    <div style="padding-left: 12px;padding-top: 13px;font-weight: 600;font-size: 13px;background:#dadada;color: black;">
+        INCUBATOR
+        <div>&nbsp;</div>
+    </div>
+
+<div class="card-body">
+    
+    <div style="width: 50%;margin-top: 4%;border-radius: 5px;margin-left: 30%;" *ngIf="!isAdd">
+            
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email">Incubator Id</label>
+            <input type="text" formControlName="IncubatorId" readonly="readonly" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.IncubatorId.errors }" />
+                        <div *ngIf="submitted && f.IncubatorId.errors" class="invalid-feedback">
+                            <div *ngIf="f.IncubatorId.errors.required">IncubatorId is required</div>
+                        </div>
+            <!-- <input type="text" class="form-control" id="email" formControlName="IncubatorId"> -->
+          </div>
+          <div class="form-group">
+            <label for="pwd">Incubator Name</label>
+            <input type="text" formControlName="IncubatorName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.IncubatorName.errors }" />
+                        <div *ngIf="submitted && f.IncubatorName.errors" class="invalid-feedback">
+                            <div *ngIf="f.IncubatorName.errors.required">Incubator Name is required</div>
+                        </div>
+            <!-- <input type="text" class="form-control" id="pwd" formControlName="IncubatorName"> -->
+          </div>
+          <div class="form-group">
+              <label for="pwd">Incubator Description</label>
+              <!-- <input type="text" class="form-control" id="pwd"> -->
+              <input type="text" formControlName="IncubatorDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.IncubatorDescription.errors }" />
+                        <div *ngIf="submitted && f.IncubatorDescription.errors" class="invalid-feedback">
+                            <div *ngIf="f.IncubatorDescription.errors.required">Description is required</div>
+                        </div>
+              <!-- <textarea class="form-control" formControlName="IncubatorDescription"> -->
+
+                <!-- </textarea> -->
+            </div>
+           
+              <div style="margin-left: 80%;width: 200px" >
+                <div *ngIf="isEditSubmit" style="width: 100px;float: left;">
+                        <button type="submit" class="btn btn-primary">Update<i class="pi pi-check"></i></button>
+                </div>
+                <div *ngIf="isAddSubmit" style="width: 100px;float: left;">
+                        <button type="submit" class="btn btn-primary">Save<i class="pi pi-check"></i></button>
+                    </div>
+                    <div  style="width: 100px;float: right;">
+                            <button type="submit" class="btn btn-success" (click)="Cancel()">Cancel<i class="pi pi-times"></i></button>
+                    </div>
+                    
+              </div>
+          
+        </form>
+           
+
+       
+            <div style="margin-top: 1%;">
+                &nbsp;
+                </div>
+            </div>
+
+            <div style="width: 100%;">
+                <div style="float: right;" *ngIf="isAdd">
+                        <button type="submit" class="btn btn-primary" (click)="btnAdd()"> <i class="pi pi-plus"></i>Add</button>
+                    <!-- <input type="button" class="btn btn-primary" value="Add" (click)="btnAdd()"> -->
+                </div>
+                <br>
+                <div style="margin-top: 1%;">
+                &nbsp;
+                </div>
+                <div *ngIf="isAdd">
+               
+              <p-table [columns]="incubatorcols" [value]="lstIncubators" [paginator]="true" [rows]="10" (sortFunction)="customSort($event)" [customSort]="true">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td>
+                       
+                                <td style="text-align:center">
+                                        <button  pButton type="button" pInitEditableRow icon="pi pi-times" class="ui-button-info" (click)="onRowDeleteInit(rowData)"></button>
+                                        <button  pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(rowData)" style="margin-left: 10px;"></button>
+                                       
+                                    </td>
+                        
+                    </tr>
+                </ng-template>
+            </p-table>
+                 
+        </div>
+            </div>
+</div>
+</div>
+<p-toast position="top-right"></p-toast>

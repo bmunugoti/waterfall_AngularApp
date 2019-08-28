@@ -1,0 +1,57 @@
+﻿
+
+
+<div style="background-color: #0d3879!important;color: white">
+
+    <!-- <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+       
+        <button  class="navbar-toggler"  type="button"  data-toggle="collapse"  data-target="#navbarSupportedContent"  aria-controls="navbarSupportedContent"  aria-expanded="false"  aria-label="Toggle navigation">
+        <span  class="navbar-toggler-icon"></span>
+        </button>
+   
+
+    </nav> -->
+    <div>
+       
+      </div>
+    <div class="row" >
+        <div  style="float: left;margin-left: 2%;margin-top: 5px;">
+            <a  class="navbar-brand" style="color: white!important" href="#">Water Fall</a>
+        </div>
+        <div style="float: right;margin-left: 70%;margin-top: 5px;">
+            User Name  :  {{this.userService.getName()}}  &nbsp;<a routerLink='/login' style="color: white; text-decoration: none;font-weight: 500"><i class="pi pi-sign-out"></i>LogOut</a>
+        <!-- <img src="../assets/images.jpg" style="width: 30px;height: 30px;" (click)="onUserclick()"> -->
+          </div>
+        </div>
+
+</div>
+<!-- <div *ngIf="isShowName" style="margin-left: 86%;border: 1px solid black;background: #cecece">
+
+  
+  <div style="font-weight: 500;color: black;">
+   User Name  {{this.userService.getName()}}
+  </div>
+  <div>
+    <a routerLink='/login' style="color: black;text-decoration: none;font-weight: 500"><i class="pi pi-sign-out"></i>LogOut</a>
+  </div>
+</div> -->
+<div class="container-fluid">
+        <div class="row">
+          <div class="col-2" style="height: 100%;background: #dfdfdf;border: 1px solid #bbbbbb">
+            <p-panelMenu [model]="items" >
+              
+            </p-panelMenu>
+          </div>
+          <div class="col-10">
+                
+                      <div style="margin-top: 5%">
+                            <router-outlet></router-outlet>
+                      </div>
+               
+          </div>
+         
+        </div>
+      </div>
+
+
+

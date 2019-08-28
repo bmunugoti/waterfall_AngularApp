@@ -1,0 +1,126 @@
+<div class="card" style="border: 1px solid #818181!important;">
+       
+    <div style="padding-left: 12px;padding-top: 13px;font-weight: 600;font-size: 13px;background: #dadada;color:black;">
+        SCHEDULE
+        <div>&nbsp;</div>
+    </div>
+<div class="card-body">
+    
+    <div style="width: 50%;margin-top: 1%;border-radius: 5px;margin-left: 30%">
+            
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+         
+          <div class="form-group">
+            <label for="pwd">Sample Name</label>
+            <!-- <input type="text" class="form-control" id="pwd"> -->
+
+            <input type="text" formControlName="SampleName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.SampleName.errors }" />
+            <div *ngIf="submitted && f.SampleName.errors" class="invalid-feedback">
+                <div *ngIf="f.SampleName.errors.required">Sample Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+              <label for="pwd">Sample Type</label>
+              <!-- <input type="text" class="form-control" id="pwd"> -->
+
+              <input type="text" formControlName="SampleType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.SampleType.errors }" />
+              <div *ngIf="submitted && f.SampleType.errors" class="invalid-feedback">
+                  <div *ngIf="f.SampleType.errors.required">Sample Type is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="remarl">Select Location</label>
+                <br>
+                <!-- <p-dropdown [options]="lstFrequency" class="form-control" editable="editable"  formControlName="SelectFrequncy" placeholder="  Select a Frequency  " optionLabel="name" [ngClass]="{ 'is-invalid': submitted && f.SelectFrequncy.errors }" ></p-dropdown> -->
+                <!-- <p-dropdown [options]="lstFrequency" formControlName="SelectFrequncy"></p-dropdown> -->
+                <input type="text" formControlName="SampleLocation4" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.SampleLocation4.errors }" />
+                <div *ngIf="submitted && f.SampleLocation4.errors" class="invalid-feedback">
+                    <div *ngIf="f.SampleLocation4.errors.required">Location is required</div>
+                </div>
+                <!-- <input type="text" class="form-control" id="remark"> -->
+              </div>
+           
+              <div style="margin-left: 80%;width: 200px" >
+                
+                <div  style="width: 100px;float: left;">
+                        <button type="submit" class="btn btn-primary">Search<i class="pi pi-check"></i></button>
+                    </div>
+                   
+                    
+              </div>
+          
+          
+        </form>
+           
+            <div style="margin-top: 1%;">
+                &nbsp;
+                </div>
+            </div>
+
+            <div style="width: 100%;" *ngIf="isAdd">
+                   
+                   
+                    <div style="margin-top: 1%;">
+                    &nbsp;
+                    </div>
+              <p-table [columns]="Samplecols" [value]="lstSamples" [paginator]="true" [rows]="10" >
+                <ng-template pTemplate="header" let-columns>
+                    <tr >
+                        <th *ngFor="let col of columns" >
+                            {{col.header}}
+                            <!-- <p-sortIcon [field]="col.field"></p-sortIcon> -->
+                        </th>
+                        
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                            
+                        <td>
+                            {{rowData.SampleName}}
+                        </td>
+                        <td>
+                                {{rowData.SampleType}}
+                            </td>
+                            
+                                <td style="width: 100px">
+                                        <!-- {{rowData.FrequencyDays}} -->
+                                        
+                                                <input type="number" [(ngModel)]="rowData.FrequencyDays" class="form-control">
+                                               
+                                                
+                                           
+                                       
+                                       
+                                    </td>
+                                <td style="width: 100px">
+                                    <!-- {{rowData.FrequencyNumber}} -->
+                                    <input type="number" [(ngModel)]="rowData.FrequencyNumber" class="form-control">
+                                </td>
+                                <td>
+                                    <!-- {{rowData.ScheduleDate}} -->
+                                    <input type="date" [(ngModel)]="rowData.ScheduleDate" class="form-control">
+                                </td>
+                        <!-- <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td> -->
+                        <!-- <td style="text-align:center">
+                                <button  pButton type="button" pInitEditableRow icon="pi pi-times" class="ui-button-info" (click)="onRowDeleteInit(rowData)"></button>
+                                <button  pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" style="margin-left: 10px;" (click)="onRowEditInit(rowData)"></button>
+                               
+                            </td> -->
+                    </tr>
+                </ng-template>
+            </p-table>
+            <br>
+            <br>
+            <div style="margin-left: 90%">
+                <button type="button"  class="btn btn-primary" (click)="onRowLoad()">Submit</button>
+            </div>
+            </div>
+           
+</div>
+</div>
+
+<!-- <p-toast position="top-right"></p-toast> -->

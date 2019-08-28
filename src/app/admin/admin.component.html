@@ -1,0 +1,39 @@
+
+
+<div class="card" >
+       
+        <div style="padding-left: 12px;padding-top: 20px;font-weight: 500;font-size: 18px;background: #2b68c4;color: white;">
+               ADMIN
+                <div>&nbsp;</div>
+            </div>
+        <div class="card-body">
+                
+                <div style="width: 100%;margin-top: 4%;border-radius: 5px;">
+                        
+                        
+                        <p-table [columns]="cols" [value]="transactions" [paginator]="true" [rows]="10" (sortFunction)="customSort($event)" [customSort]="true">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                        {{col.header}}
+                                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                <tr>
+                                    <td *ngFor="let col of columns">
+                                        {{rowData[col.field]}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                        <div style="margin-top: 1%;">
+                            &nbsp;
+                            </div>
+                        </div>
+        </div>
+      </div>
+
+
+

@@ -1,0 +1,98 @@
+<div id="loginDiv">
+  
+  <div style="text-align:center" style="padding: 70px;text-align:center" *ngIf="loading">
+     
+    </div>
+   
+    <div style="text-align: center;
+    margin-top: 3%;">
+
+        <div style="     color: #fff;
+        font-size: 46px;
+        margin-bottom: 5px;
+        text-decoration: underline;font-weight: 700;">&nbsp;&nbsp;</div>
+        <div style="    color: #fff;font-size:30px;
+         margin-top: 27px;"></div>
+           </div>
+
+
+<div style="height: 100%;" *ngIf="!loading">
+
+
+
+
+<div>
+  <!-- <div class="loginf_head">
+    
+</div> -->
+  <div class="loginf_body">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <hr class="colored" />
+      <div class="floating">
+          
+          <div style="    color: #fff;
+          text-transform: uppercase;
+          padding: 10px 20px;
+          font-size: 20px;
+          font-weight: 700;
+          text-align: center;">
+              <!-- <img src="/src/Images/images.jpg"/> -->
+              <h2>Login</h2>
+            </div>
+        <div style="margin: 0px 0 20px 0">
+
+          <input type="email" class="form-control" placeholder="Username" formControlName="email" id="email"
+            style="width:100%;">
+
+          <div *ngIf="submitted && loginForm.controls.email.errors" class="error">
+
+            <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>
+
+          </div>
+        </div>
+
+        <div style="margin: 20px 0">
+
+          <input type="password" class="form-control" formControlName="password" placeholder="Password" id="pwd"
+            style="width:100%;">
+
+          <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+
+            <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
+
+          </div>
+
+        </div>
+
+        <div style="margin: 20px 0 0px 0; text-align: center">
+<button class="btn1">Login</button>
+          <!-- <slb-button id="primary-button" [classnames]="'primary full-width'" [disabled]="false">
+
+            Login
+
+          </slb-button> -->
+
+        </div>
+
+        <div *ngIf="invalidLogin" class="error">
+
+          <div>Invalid UserName / Password</div>
+
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+
+</div>
+
+<div style="    position: fixed;
+bottom:3px;
+right:20px">
+<!-- <img src="assets/Images/Schlum_logo_white.png" style="width:200px"/> -->
+</div>
+</div>

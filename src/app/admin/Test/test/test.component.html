@@ -1,0 +1,197 @@
+<div class="card" style="border: 1px solid #818181!important;">
+       
+    <div style="padding-left: 12px;padding-top: 13px;font-weight: 600;font-size: 13px;background: #dadada;color: black;">
+        CHEMICAL TEST
+        <div>&nbsp;</div>
+    </div>
+<div class="card-body">
+    
+    <div style="width: 50%;margin-top: 4%;border-radius: 5px;margin-left: 30%" *ngIf="!isAdd">
+            
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+
+            <div class="row">
+                <div class="col-4">
+                        <label for="email">Test Name</label>
+                        <input type="text" formControlName="TestName" class="form-control" style="display: none;">
+                        <!-- <input type="text" class="form-control" id="email"> -->
+                        <input type="text" formControlName="TestName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.TestName.errors }" />
+                        <div *ngIf="submitted && f.TestName.errors" class="invalid-feedback">
+                            <div *ngIf="f.TestName.errors.required">Name is required</div>
+                        </div>
+                </div>
+                <div class="col-4">
+                        <label for="pwd">Test Type</label>
+                        <!-- <input type="text" class="form-control" id="pwd"> -->
+                        <!-- <input type="text" formControlName="TestType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.TestType.errors }" /> -->
+                        <p-dropdown [options]="lstTypes" editable="editable"  formControlName="TestType" placeholder="  Select TestType  " optionLabel="name" [ngClass]="{ 'is-invalid': submitted && f.TestType.errors }" (onChange)="onTypechange($event)"></p-dropdown>
+                        <div *ngIf="submitted && f.TestType.errors" class="invalid-feedback">
+                            <div *ngIf="f.TestType.errors.required">Type is required</div>
+                        </div>
+                    </div>
+                    <div class="col-4" *ngIf="isShowDrp">
+                            <label for="pwd">Test Type1</label>
+                            <!-- <input type="text" class="form-control" id="pwd"> -->
+                            <!-- <input type="text" formControlName="TestType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.TestType.errors }" /> -->
+                            <p-dropdown [options]="lstTypes1" editable="editable"  formControlName="TestType1" placeholder="  Select TestType  " optionLabel="name" [ngClass]="{ 'is-invalid': submitted && f.TestType1.errors }" ></p-dropdown>
+                            <div *ngIf="submitted && f.TestType1.errors" class="invalid-feedback">
+                                <div *ngIf="f.TestType1.errors.required">Type is required</div>
+                            </div>
+                        </div>
+                </div>
+
+            
+          </div>
+        
+          <div class="form-group">
+              <label for="pwd">Test Description</label>
+              <input type="text" formControlName="TestDescription" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.TestDescription.errors }" />
+            <div *ngIf="submitted && f.TestDescription.errors" class="invalid-feedback">
+                <div *ngIf="f.TestDescription.errors.required">Description is required</div>
+            </div>
+              <!-- <input type="text" class="form-control" id="pwd"> -->
+            </div>
+            <div class="form-group">
+                <label for="remarl">Unit Of Measurment</label>
+                <br>
+                <!-- <input type="text" formControlName="UnitOfMeasurment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.UnitOfMeasurment.errors }" /> -->
+             
+              
+                <p-dropdown editable="editable"  [options]="lstUoM" class="form-control" formControlName="UnitOfMeasurment" placeholder="  Select a UoM  " optionLabel="name" [ngClass]="{ 'is-invalid': submitted && f.UnitOfMeasurment.errors }" ></p-dropdown>
+                <div *ngIf="submitted && f.UnitOfMeasurment.errors" class="invalid-feedback">
+                    <div *ngIf="f.UnitOfMeasurment.errors.required">UoM is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                    
+                    <div class="row">
+                        <div class="col-3">
+                                <label for="remarl">Min</label>
+                                <input type="number"  formControlName="TestMin" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.TestMin.errors }"/>
+                                <div *ngIf="submitted && f.TestMin.errors" class="invalid-feedback">
+                                        <div *ngIf="f.TestMin.errors.required">Min Value is required</div>
+                                    </div>
+                        </div>
+                        <div class="col-3">
+                                <label for="remarl">Max</label>
+                                <input type="number"  formControlName="TestMax" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.TestMax.errors }"/>
+                                <div *ngIf="submitted && f.TestMax.errors" class="invalid-feedback">
+                                        <div *ngIf="f.TestMax.errors.required">Max Value is required</div>
+                                    </div>
+                            </div>
+                        <div class="col-3">
+                                <label for="remarl">NotGreaterThan</label>
+                                <input type="number"  formControlName="TestGreaterThan" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.TestGreaterThan.errors }"/>
+                                <div *ngIf="submitted && f.TestGreaterThan.errors" class="invalid-feedback">
+                                        <div *ngIf="f.TestGreaterThan.errors.required">NotGreaterThan Value is required</div>
+                                    </div>
+                            </div>
+                        <div class="col-3">
+                                <label for="remarl"> NotLessthan</label>
+                                <input type="number"  formControlName="TestLessthan" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.TestLessthan.errors }"/>
+                                <div *ngIf="submitted && f.TestLessthan.errors" class="invalid-feedback">
+                                        <div *ngIf="f.TestLessthan.errors.required">NotLessthan Value is required</div>
+                                    </div>
+                            </div>
+                    </div>
+                   
+                    <!-- <div *ngIf="submitted && f.UnitOfMeasurment.errors" class="invalid-feedback">
+                        <div *ngIf="f.UnitOfMeasurment.errors.required">UoM is required</div>
+                    </div> -->
+                  </div>
+                  <div class="form-group">
+                        <label for="remarl">File Upload</label>
+                        <br>
+                        <input type="file" class="form-control" formControlName="TestFile">
+                        <!-- <input type="text" formControlName="UnitOfMeasurment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.UnitOfMeasurment.errors }" /> -->
+                        <!-- <div *ngIf="submitted && f.UnitOfMeasurment.errors" class="invalid-feedback">
+                            <div *ngIf="f.UnitOfMeasurment.errors.required">UoM is required</div>
+                        </div> -->
+                        <div>
+                            <label style="color: red;font-size: 13px;">
+                                Please Upload the Specific format Documents like (.doc)
+                            </label>
+                        </div>
+                      </div>
+                  
+              <div style="margin-left: 80%;width: 200px" >
+                    <div *ngIf="isEditSubmit" style="width: 100px;float: left;">
+                            <button type="submit" class="btn btn-primary">Update<i class="pi pi-check"></i></button>
+                    </div>
+                    <div *ngIf="isAddSubmit" style="width: 100px;float: left;">
+                            <button type="submit" class="btn btn-primary">Save<i class="pi pi-check"></i></button>
+                        </div>
+                        <div  style="width: 100px;float: right;">
+                                <button type="submit" class="btn btn-success" (click)="Cancel()">Cancel<i class="pi pi-times"></i></button>
+                        </div>
+                        
+                  </div>
+          
+        </form>
+        <!-- <div class="form-group">
+                <label for="remarl">File Upload</label>
+               
+                <p-fileUpload name="demo[]"  (onUpload)="onUpload($event)"
+        multiple="multiple" accept="image/*" maxFileSize="1000000">
+    <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+        </ul>
+    </ng-template>
+</p-fileUpload>
+              </div> -->
+            <div style="margin-top: 1%;">
+                &nbsp;
+                </div>
+            </div>
+
+            <div style="width: 100%;" *ngIf="isAdd">
+                    <div style="float: right;" >
+                            <button type="submit" class="btn btn-primary" (click)="btnAdd()"> <i class="pi pi-plus"></i>Add</button>
+                        <!-- <input type="button" class="btn btn-primary" value="Add" (click)="btnAdd()"> -->
+                    </div>
+                    <br>
+                    <div style="margin-top: 1%;">
+                    &nbsp;
+                    </div>
+              <p-table [columns]="Testcols" [value]="lstTest" [paginator]="true" [rows]="10" (sortFunction)="customSort($event)" [customSort]="true">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td>
+                        <td style="text-align:center">
+                                <button  pButton type="button" pInitEditableRow icon="pi pi-times" class="ui-button-info" (click)="onRowDeleteInit(rowData)"></button>
+                                <button  pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(rowData)" style="margin-left: 10px;"></button>
+                               
+                            </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            </div>
+</div>
+</div>
+<p-dialog header="Title" [(visible)]="display" [style]="{width: '550px', minWidth: '500px'}">
+        Are you sure delete?
+        <br>
+        <div class="row">
+                <div class="col-5">
+                        <button class="ui-button-info" (click)="onclickdelete()"><i class="pi pi-check"></i>Ok</button>
+                    </div>
+                    <div class="col-7">
+                            <button class="ui-button-info" (click)="onclickcancel()"><i class="pi pi-times"></i>cancel</button>
+                    </div>
+        </div>
+        <br>
+    </p-dialog>
+<p-toast position="top-right"></p-toast>
